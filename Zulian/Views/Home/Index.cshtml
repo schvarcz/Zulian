@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="page">
+
+    <div class="container body-content">
+        <h1>Estimativa de tamanho populacional de <em>Amazona vinacea</em>.</h1>
+
+        <h3>@ViewBag.Message</h3>
+        <br />
+        <p class="lead">
+            O papagaio-de-peito-roxo (<em>Amazona vinacea</em>) é uma espécie ameaçada de extinção, com área de distribuição e tamanho populacional relativamente pouco conhecidos. Para obter um conhecimento robusto da variação temporal de métricas populacionais como o tamanho da população, é importante ter um valor base, de referência, e uma estimativa periódica das métricas. Os esforços de contagem de A. <em>vinacea</em>, realizados nos últimos dois anos (organizados por Jaime Martinez e Nêmora Prestes), são uma contribuição fundamental para o conhecimento da variação temporal da espécie; este questionário online visa complementar as contagens com uma quantificação da incerteza associada ao seu resultado.  Para tal, pretendemos combinar o conhecimento de peritos com uma ferramenta matemática chamada ‘aritmética <em>fuzzy</em>’ que nos permite efetuar operações matemáticas sobre o conhecimento de vários peritos.
+        </p>
+        <p class="lead">
+            No Brasil, Argentina e Paraguai – países incluídos na área de distribuição de A. <em>vinacea</em> – existe um conjunto de peritos que têm conhecimento sobre locais de agregação dos indivíduos da espécie (dormitórios coletivos). Nossa avaliação do tamanho populacional da espécie será baseada em uma compilação sobre o número de indivíduos em cada um destes dormitórios. Na prática, o que pretendemos fazer é compilar o conhecimento de peritos sobre cada um destes dormitórios e utilizar a aritmética <em>fuzzy</em> para calcular uma soma das informações obtidas para cada dormitório. Esta soma será a nossa caracterização do tamanho populacional. O próximo parágrafo explica como tratamos a incerteza.
+        </p>
+        <p class="lead">
+            A aritmética <em>fuzzy</em> resume a incerteza acerca de um número (total de indivíduos em um dormitório, por exemplo), através de um número <em>fuzzy</em>. De uma forma bem simplificada, um número <em>fuzzy</em> consiste em uma figura geométrica que expressa quais são os valores que consideramos mais ou menos possíveis (ou completamente impossíveis) para uma métrica do nosso interesse. Neste questionário, pretendemos obter um número <em>fuzzy</em> para cada dormitório. Esse número expressará duas coisas:
+            <ol class="lead" style="list-style:lower-roman">
+                <li>
+                    Um intervalo de valores que o perito considera ter a máxima possibilidade de incluir o verdadeiro número de indivíduos no dormitório – dentro deste intervalo, todos os valores são igualmente possíveis;
+                </li>
+                <li>
+                    Um intervalo mais amplo, delimitado pelos valores que o perito considera o mínimo possível e o máximo possível de número de indivíduos presentes no dormitório.
+                </li>
+            </ol>
+        </p>
+        <p class="lead">
+            Por exemplo, imagine que você contou 140 indivíduos em um dormitório mas que, na hora de estimar o número de indivíduos que estão realmente presentes nesse dormitório, você considera que qualquer número entre 140 e 150 indivíduos é igualmente e altamente possível. Este intervalo entre 140 e 150 define a região de possibilidade máxima (possibilidade = 1) no gráfico abaixo. No entanto, apesar da incerteza quanto ao verdadeiro número de indivíduos, você apostaria sua casa e seu carro (ou qualquer dos seus bens mais preciosos) em que o dormitório não tem menos de 120 nem mais de 180 papagaios. Esta segunda afirmação delimita os extremos inferior e superior do número <em>fuzzy</em>.
+        </p>
+
+        <p class="lead">
+            <img src="~/Content/tutorial1.jpg" class="img-responsive center-block" />
+        </p>
+        <p class="lead">
+            Dependendo do conhecimento do perito sobre o dormitório, o número <em>fuzzy</em> pode assumir uma forma mais ou menos complexa. Por exemplo, você pode ter contado um total de 60 papagaios em um dormitório, mas não tem base suficientemente sólida para falar de um intervalo de possibilidade máxima. Adicionalmente, você não tem qualquer razão para afirmar que o número de papagaios pode estar abaixo da sua contagem e, finalmente, você aposta a casa e o carro em que não existem mais do que 80 papagaios neste dormitório. Nesse caso, o número <em>fuzzy</em> que melhor expressa o seu conhecimento está representado na figura abaixo:
+        </p>
+        <p class="lead">
+            <img src="~/Content/tutorial2.jpg" class="img-responsive center-block" />
+        </p>
+        <p class="lead">
+            Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de A. <em>vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este interface questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. No final do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
+        </p>
+        <br/>
+        <p class="lead">
+            Muito obrigado pela sua colaboração!
+        </p>
+        <button class="btn btn-primary startup">Começar</button>
+    </div>
+</div>
+<div class="page text-center">
+    <h1>Ok?</h1>
+    <h1>Pronto?</h1>
+    <h1>Vamos começar!</h1>
+</div>
+
+<div class="page">
+    <div class="container body-content">
+        <h3><strong>Sigilo</strong>:</h3>
+
+        <div class="col-sm-offset-1">
+            <div class="">
+                <label><input type="radio" name="autorizacao" value="2" /> Autorizo o uso das informações numéricas sem restrição.</label>
+                <label><input type="radio" name="autorizacao" value="1" /> Autorizo o uso das informações em um artigo sobre estimativa de tamanho populacional de A. vinacea, mas gostaria de ler e ter oportunidade de contribuir para o artigo resultante, antes da submissão a um periódico.</label>
+            </div>
+            <p class="help-block">*Escolha uma das opções para definir o grau de sigilo dos dados fornecidos:</p>
+        </div>
+        <br />
+        <br />
+        <button class="btn btn-primary">Enviar</button>
+    </div>
+</div>
+<div class="page">
+    <div class="container body-content">
+        <form class="form-horizontal" method="post">
+            <fieldset class="row">
+                <legend>Dados básicos</legend>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Quem é você:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="whoAmI" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Nome do dormitório:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="whichRoom" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Há quanto tempo monitora este dormitório:</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="howLong" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Onde este dormitório se localiza:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group col-sm-3" style="padding-left:0px">
+                            <div class="input-group-addon">Lat</div>
+                            <input type="text" name="lat" class="form-control lat" />
+                        </div>
+                        <div class="input-group col-sm-3">
+                            <div class="input-group-addon">Lng</div>
+                            <input type="text" name="lng" class="form-control lng" />
+                        </div>
+                    </div>
+                </div>
+                <span class="help-block" style="margin-bottom:0px"><small>Arraste o pino para informar a localização do dormitório.</small></span>
+                <div id="map-canvas"></div>
+            </fieldset>
+            <br />
+            <fieldset class="row">
+                <legend>Dados <em>Fuzzy</em></legend>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Extremo inferior:</label>
+                        <span class="help-block"><small>(número mínimo de indivíduos presentes no dormitório)</small></span>
+                        <input type="number" name="bottom-left" class="form-control bottom-left" value="0" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Top left:</label>
+                        <input type="text" name="top-left" class="form-control top-left" value="30" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Top right:</label>
+                        <input type="text" name="top-right" class="form-control top-right" value="50" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Extremo superior:</label>
+                        <span class="help-block"><small>(número máximo de indivíduos presentes no dormitório)</small></span>
+                        <input type="text" name="bottom-right" class="form-control bottom-right" value="70" />
+                    </div>
+                </div>
+                <div id="container" class="col-md-8"></div>
+                <button type="submit" class="btn">Salvar e informar outro dormitório</button>
+                <button type="submit" class="btn btn-primary">Salvar e enviar questionário</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
