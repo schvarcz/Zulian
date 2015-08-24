@@ -180,9 +180,32 @@
         setTimeout(function () {
             $(".page").css({ visibility: "visible", display: "table-cell" }).hide();
             $(".page").first().fadeIn();
-        }, 2000);
-
-        $(".startup").click(function () {
+        }, 1000);
+        function formCheck($this)
+        {
+            $inputs = $this.parents(".page").find('input[type="text"]').filter(function () { return $(this).val() == ""; });
+            $radios = $this.parents(".page").find('input[type="radio"]');
+            $radiosChecked = $this.parents(".page").find('input[type="radio"]:checked');
+            if ($inputs.length != 0 || ($radios.length != 0 && $radiosChecked.length == 0)) {
+                $inputs.parents(".form-group").addClass("has-error");
+                $radios.parents(".radio-parent").addClass("has-error");
+                return false;
+            }
+            return true;
+        }
+        function sendData()
+        {
+            $.ajax({
+                url: "/Home/Save",
+                data: $("input").serialize(),
+                method:"post",
+                success: function (data) { console.log(data);}
+            });
+        }
+        $(".startup,.next").click(function (e) {
+            e.preventDefault();
+            if (!formCheck($(this)))
+                return false;
             $(this).parents(".page").fadeOut(500, "linear", function () {
                 $(window).scrollTop(0);
                 $(this).next().fadeIn(500, "linear", function () {
@@ -191,13 +214,48 @@
                             if ($(this).next().length)
                                 $(this).next().fadeIn(1000, "linear", animateSplash);
                             else
-                                $(".page").last().fadeIn();
+                                $(this).parents(".page").next().fadeIn();
                         })
                     }
                     $(this).find("h1").first().fadeIn(1000, "linear", animateSplash);
                 }).find("h1").hide();
             });
         });
+        $(".renew").click(function () {
+
+            if (!formCheck($(this)))
+                return false;
+            sendData();
+            $(this).parents(".page").fadeOut(500, "linear", function () {
+
+                $(this).find(".has-error").removeClass("has-error");
+                $(this).find("input").each(function () {
+                    $(this).val($(this).attr("default"));
+                });
+                $(this).fadeIn();
+            });
+        })
+        $(".finish").click(function () {
+
+            if (!formCheck($(this)))
+                return false;
+            sendData();
+
+            $(this).parents(".page").fadeOut(500, "linear", function () {
+                $(window).scrollTop(0);
+                $(this).next().fadeIn(500, "linear", function () {
+                    function animateSplash() {
+                        $(this).delay(1000).fadeOut(1000, "linear", function () {
+                            if ($(this).next().length)
+                                $(this).next().fadeIn(1000, "linear", animateSplash);
+                            else
+                                $(this).parents(".page").next().fadeIn();
+                        })
+                    }
+                    $(this).find("h1").first().fadeIn(1000, "linear", animateSplash);
+                }).find("h1").hide();
+            });
+        })
     });
 
     </script>

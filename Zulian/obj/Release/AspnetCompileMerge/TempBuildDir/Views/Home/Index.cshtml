@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
+
 <div class="page">
 
     <div class="container body-content">
@@ -42,7 +43,7 @@
         <p class="lead">
             Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de A. <em>vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este interface questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. No final do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
         </p>
-        <br/>
+        <br />
         <p class="lead">
             Muito obrigado pela sua colaboração!
         </p>
@@ -51,8 +52,16 @@
 </div>
 <div class="page text-center">
     <h1>Ok?</h1>
-    <h1>Pronto?</h1>
-    <h1>Vamos começar!</h1>
+</div>
+
+<div class="page text-center">
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="control-label">Quem é você:</label>
+            <input type="text" name="whoAmI" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary next">Próximo</button>
+    </div>
 </div>
 
 <div class="page">
@@ -60,48 +69,49 @@
         <h3><strong>Sigilo</strong>:</h3>
 
         <div class="col-sm-offset-1">
-            <div class="">
-                <label><input type="radio" name="autorizacao" value="2" /> Autorizo o uso das informações numéricas sem restrição.</label>
-                <label><input type="radio" name="autorizacao" value="1" /> Autorizo o uso das informações em um artigo sobre estimativa de tamanho populacional de A. vinacea, mas gostaria de ler e ter oportunidade de contribuir para o artigo resultante, antes da submissão a um periódico.</label>
+            <div class="radio-parent">
+                <div class="radio">
+                    <label><input type="radio" name="autorizacao" value="Sem Restrições" /> Autorizo o uso das informações numéricas sem restrição.</label>
+                    <label><input type="radio" name="autorizacao" value="Com Restrições" /> Autorizo o uso das informações em um artigo sobre estimativa de tamanho populacional de A. vinacea, mas gostaria de ler e ter oportunidade de contribuir para o artigo resultante, antes da submissão a um periódico.</label>
+                </div>
             </div>
             <p class="help-block">*Escolha uma das opções para definir o grau de sigilo dos dados fornecidos:</p>
         </div>
         <br />
         <br />
-        <button class="btn btn-primary">Enviar</button>
+        <button class="btn btn-primary next">Enviar</button>
     </div>
 </div>
+<div class="page text-center">
+    <h1>Pronto?</h1>
+    <h1>Vamos começar!</h1>
+</div>
+
 <div class="page">
     <div class="container body-content">
-        <form class="form-horizontal" method="post">
+        <div class="form-horizontal">
             <fieldset class="row">
                 <legend>Dados básicos</legend>
                 <div class="form-group">
-                    <label class="control-label col-sm-4">Quem é você:</label>
-                    <div class="col-sm-4">
-                        <input type="text" name="whoAmI" class="form-control" />
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="control-label col-sm-4">Nome do dormitório:</label>
                     <div class="col-sm-4">
-                        <input type="text" name="whichRoom" class="form-control" />
+                        <input type="text" name="whichRoom" class="form-control" default=""/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Há quanto tempo monitora este dormitório:</label>
                     <div class="col-sm-4">
-                        <input type="text" name="howLong" class="form-control" />
+                        <input type="text" name="howLong" class="form-control" default="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Onde este dormitório se localiza:</label>
-                    <div class="col-sm-8">
-                        <div class="input-group col-sm-3" style="padding-left:0px">
+                    <div class="col-sm-4">
+                        <div class="input-group col-sm-6" style="padding-left:0px; float:left">
                             <div class="input-group-addon">Lat</div>
                             <input type="text" name="lat" class="form-control lat" />
                         </div>
-                        <div class="input-group col-sm-3">
+                        <div class="input-group col-sm-6" style="padding-left:0px; float:left">
                             <div class="input-group-addon">Lng</div>
                             <input type="text" name="lng" class="form-control lng" />
                         </div>
@@ -117,27 +127,33 @@
                     <div class="form-group">
                         <label class="control-label">Extremo inferior:</label>
                         <span class="help-block"><small>(número mínimo de indivíduos presentes no dormitório)</small></span>
-                        <input type="number" name="bottom-left" class="form-control bottom-left" value="0" />
+                        <input type="number" name="bottom-left" class="form-control bottom-left" value="0" default="0" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Top left:</label>
-                        <input type="text" name="top-left" class="form-control top-left" value="30" />
+                        <input type="text" name="top-left" class="form-control top-left" value="30" default="30" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Top right:</label>
-                        <input type="text" name="top-right" class="form-control top-right" value="50" />
+                        <input type="text" name="top-right" class="form-control top-right" value="50"  default="50"/>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Extremo superior:</label>
                         <span class="help-block"><small>(número máximo de indivíduos presentes no dormitório)</small></span>
-                        <input type="text" name="bottom-right" class="form-control bottom-right" value="70" />
+                        <input type="text" name="bottom-right" class="form-control bottom-right" value="70" default="70" />
                     </div>
                 </div>
                 <div id="container" class="col-md-8"></div>
-                <button type="submit" class="btn">Salvar e informar outro dormitório</button>
-                <button type="submit" class="btn btn-primary">Salvar e enviar questionário</button>
+                <button class="btn renew">Salvar e informar outro dormitório</button>
+                <button class="btn btn-primary finish">Salvar e enviar questionário</button>
             </fieldset>
-        </form>
+        </div>
     </div>
 </div>
 
+
+
+<div class="page text-center">
+    <span class="glyphicon glyphicon-ok" style="color:#3e6; font-size:30pt;" aria-hidden="true"></span> <br />
+    <h3> <strong>Obrigado por sua colaboração!</strong></h3>
+</div>
