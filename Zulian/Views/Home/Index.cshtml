@@ -41,7 +41,7 @@
             <img src="~/Content/tutorial2.jpg" class="img-responsive center-block" />
         </p>
         <p class="lead">
-            Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de A. <em>vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este interface questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. No final do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
+            Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de <em>A. vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este interface questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. Logo no começo do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
         </p>
         <br />
         <p class="lead">
@@ -72,7 +72,7 @@
             <div class="radio-parent">
                 <div class="radio">
                     <label><input type="radio" name="autorizacao" value="Sem Restrições" /> Autorizo o uso das informações numéricas sem restrição.</label>
-                    <label><input type="radio" name="autorizacao" value="Com Restrições" /> Autorizo o uso das informações em um artigo sobre estimativa de tamanho populacional de A. vinacea, mas gostaria de ler e ter oportunidade de contribuir para o artigo resultante, antes da submissão a um periódico.</label>
+                    <label><input type="radio" name="autorizacao" value="Com Restrições" /> Autorizo o uso das informações em um artigo sobre estimativa de tamanho populacional de <em>A. vinacea</em>, mas gostaria de ler e ter oportunidade de contribuir para o artigo resultante, antes da submissão a um periódico.</label>
                 </div>
             </div>
             <p class="help-block">*Escolha uma das opções para definir o grau de sigilo dos dados fornecidos:</p>
@@ -130,12 +130,16 @@
                         <input type="number" name="bottom-left" class="form-control bottom-left" value="0" default="0" />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Top left:</label>
-                        <input type="text" name="top-left" class="form-control top-left" value="30" default="30" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Top right:</label>
-                        <input type="text" name="top-right" class="form-control top-right" value="50"  default="50"/>
+                        <label class="control-label">Intervalo mais possível:</label>
+                        <span class="help-block"><small>(intervalo mais possível de indivíduos no dormitório)</small></span>
+                        <div class="col-sm-12" style="padding:0px">
+                            <div class="col-sm-6" style="padding-left:0px">
+                                <input type="text" name="top-left" class="form-control top-left" value="30" default="30" />
+                            </div>
+                            <div class="col-sm-6" style="padding-right:0px">
+                                <input type="text" name="top-right" class="form-control top-right" value="50" default="50" />
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Extremo superior:</label>
