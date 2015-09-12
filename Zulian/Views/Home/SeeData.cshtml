@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+    $(function () {
+
+        /**************
+        * Geolocation *
+        **************/
+        var map;
+
+        var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(-30.069219677447972, -51.11992349590588),
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            streetViewControl: false
+        };
+
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+        function createInfoContent(obj)
+        {
+            return "<h3>" + obj.ZoneName + "</h3>" +
+                "<div>" +
+                "<div><label>Pesquisador(a):</label><span> " + obj.Researcher + "</span></div>" +
+                "<div><label>Tempo de trabalho:</label><span> " + obj.HowLong + "</span></div>" +
+                "<div><label>Permissão:</label><span> " + obj.Permission + "</span></div>" +
+                "<div><label>Fuzzy:</label><span> " + obj.lefDown + "," + obj.leftTop + "," + obj.rightTop + "," + obj.rightDown + "</span></div>" +
+                "<div class='chart' data='" + obj.lefDown + "," + obj.leftTop + "," + obj.rightTop + "," + obj.rightDown + "'></div>" +
+                "</div>";
+        }
+        $.ajax({
+            url: "/Home/getJsonData",
+            success: function (data)
+            {
+                data = eval(data);
+                var bounds = new google.maps.LatLngBounds();
+                for (d in data)
+                {
+                    d = data[d];
+                    var pt = new google.maps.LatLng(d.lat, d.lng);
+                    bounds.extend(pt);
+                    var marker = new google.maps.Marker({
+                        position: pt,
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        title: d.ZoneName,
+                        content: createInfoContent(d)
+                    });
+                    marker.addListener('click', function () {
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: this.content
+                        });
+
+
+                        infowindow.addListener("domready", function () {
+
+                            $('.chart').each(function (idx,c) {
+                                data = $(c).attr("data").split(",");
+                                console.log(data);
+                                $(c).highcharts({
+                                    chart: {
+                                        type: 'line',
+                                        margin: [70, 50, 60, 80],
+                                    },
+                                    title: {
+                                        text: 'Fuzzy Number'
+                                    },
+                                    xAxis: {
+                                        title: {
+                                            text: 'Número de indivíduos'
+                                        },
+                                        gridLineWidth: 1,
+                                        minPadding: 0.2,
+                                        maxPadding: 0.2,
+                                        maxZoom: 60
+                                    },
+                                    yAxis: {
+                                        title: {
+                                            text: 'Possibilidade'
+                                        },
+                                        labels: {
+                                            formatter: function () {
+                                                if (this.value <= 1.)
+                                                    return this.value;
+                                                return "";
+                                            }
+                                        },
+                                        minPadding: 0.2,
+                                        maxPadding: 0.2,
+                                        maxZoom: 60,
+                                        min: 0,
+                                        max: 1.2,
+                                        plotLines: [{
+                                            value: 0,
+                                            width: 1,
+                                            color: '#808080'
+                                        }]
+                                    },
+                                    tooltip: {
+                                        formatter: function () {
+                                            var point = this.points[0];
+                                            if (this.y)
+                                                return '<b>' + point.series.name + '</b><br/> Confiança de 100% que é possivel encontrar ' + this.x + ' aves neste dormitório.<br/>';
+                                            return '<b>' + point.series.name + '</b><br/> Confiança de 100% que <b>NÃO</b> é possivel encontrar ' + this.x + ' aves neste dormitório.<br/>';
+                                        },
+                                        shared: true
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    exporting: {
+                                        enabled: false
+                                    },
+                                    plotOptions: {
+                                        series: {
+                                            lineWidth: 1,
+                                            dataLabels: {
+                                                enabled: true,
+                                                format: "{x}",
+                                            },
+                                        }
+                                    },
+                                    series: [{
+                                        name: "Nro de indivíduos",
+                                        data: [[parseInt(data[0]), 0], [parseInt(data[1]), 1], [parseInt(data[2]), 1], [parseInt(data[3]), 0]],
+                                        draggableX: true,
+                                        color: "#7cb5ec"
+                                    }]
+                                });
+                            })
+                        });
+                        infowindow.open(map, this);
+                    });
+                    marker.addListener('dblclick', function () {
+                        map.panTo(this.getPosition());
+                        map.setZoom(16);
+                    });
+
+                }
+                map.fitBounds(bounds);
+            }
+        });
+        setTimeout(function () {
+            $(".page").css({ visibility: "visible", display: "table-cell" }).hide();
+            $(".page").first().fadeIn();
+        }, 1000);
+    });
+
+</script>
+<style>
+    body {
+        padding-top:0px;
+    }
+    .site-wrapper {
+        padding-bottom:20px;
+    }
+    #map-canvas {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .chart {
+        width: 500px;
+    }
+</style>
+
+
+
+<div id="map-canvas" class="page">
+</div>

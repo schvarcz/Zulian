@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Zulian.Models;
 
 namespace Zulian.Controllers
 {
@@ -16,13 +17,50 @@ namespace Zulian.Controllers
         {
             return View();
         }
-        
-        public ContentResult SeeData()
+
+        public ActionResult SeeData()
+        {
+            return View();
+            //TextReader file = new StreamReader(Server.MapPath(path), System.Text.Encoding.UTF8);
+            //String str = "<pre>"+file.ReadToEnd()+"</pre>";
+            //file.Close();
+
+            //return new ContentResult() { Content = str };
+        }
+
+        public JsonResult getJsonData()
         {
             TextReader file = new StreamReader(Server.MapPath(path), System.Text.Encoding.UTF8);
-            String str = "<pre>"+file.ReadToEnd()+"</pre>";
+            List<CollectedData> data = new List<CollectedData>();
+            while (file.Peek() != -1)
+            {
+                String line = file.ReadLine();
+                String[] fields = line.Split(';');
+                data.Add(new CollectedData
+                {
+                    Researcher = fields[0],
+                    Permission = fields[1],
+                    ZoneName = fields[2],
+                    HowLong = fields[3],
+                    lat = Double.Parse(fields[4]),
+                    lng = Double.Parse(fields[5]),
+                    lefDown = Int16.Parse(fields[6]),
+                    leftTop = Int16.Parse(fields[7]),
+                    rightTop = Int16.Parse(fields[8]),
+                    rightDown = Int16.Parse(fields[9])
+                });
+            }
             file.Close();
 
+            return Json(JsonConvert.SerializeObject(data), JsonRequestBehavior.AllowGet);
+        }
+
+        public ContentResult SeeData2()
+        {
+            TextReader file = new StreamReader(Server.MapPath(path), System.Text.Encoding.UTF8);
+            String str = "<pre>" + file.ReadToEnd() + "</pre>";
+            file.Close();
+            
             return new ContentResult() { Content = str };
         }
 
