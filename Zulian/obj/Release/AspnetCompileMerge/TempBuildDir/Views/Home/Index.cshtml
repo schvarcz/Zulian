@@ -175,7 +175,7 @@
         }, 1000);
         function formCheck($this)
         {
-            $inputs = $this.parents(".page").find('input[type="text"]').filter(function () { return $(this).val() == ""; });
+            $inputs = $this.parents(".page").find('input[type="text"],input[type="number"]').filter(function () { return $(this).val() == ""; });
             $radios = $this.parents(".page").find('input[type="radio"]');
             $radiosChecked = $this.parents(".page").find('input[type="radio"]:checked');
             if ($inputs.length != 0 || ($radios.length != 0 && $radiosChecked.length == 0)) {
@@ -189,7 +189,7 @@
         {
             $.ajax({
                 url: "/Home/Save",
-                data: $("input").serialize(),
+                data: $("input,textarea").serialize(),
                 method:"post",
                 success: function (data) { console.log(data);}
             });
@@ -221,7 +221,7 @@
             $(this).parents(".page").fadeOut(500, "linear", function () {
 
                 $(this).find(".has-error").removeClass("has-error");
-                $(this).find("input").each(function () {
+                $(this).find("input,textarea").each(function () {
                     $(this).val($(this).attr("default"));
                 });
                 $(this).fadeIn();
@@ -290,7 +290,7 @@
             <img src="~/Content/tutorial2.jpg" class="img-responsive center-block" />
         </p>
         <p class="lead">
-            Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de <em>A. vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este interface questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. Logo no começo do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
+            Nas próximas páginas, você terá a oportunidade de contribuir para a avaliação populacional de A. <em>vinacea</em> através de um breve conjunto de perguntas apoiadas por um interface gráfico. Sua contribuição será arquivada em um servidor seguro e ficará sob responsabilidade do Prof. Gonçalo Ferraz, do Departamento de Ecologia da UFRGS. O projeto de estimativa do tamanho populacional de <em>A. vinacea</em> com base em conhecimento de peritos faz parte do plano de mestrado da aluna Viviane Zulian, sob orientação do Prof. Ferraz, no laboratório de Ecologia de Populações do Instituto de Biociências, UFRGS. Este questionário online foi realizado pelo aluno Guilherme Schvarcz Franco do Departamento de Informática da UFRGS. Antes da entrega final da dissertação você receberá uma cópia do trabalho realizado. O Prof. Ferraz e a aluna Viviane Zulian se comprometem a não divulgar qualquer informação sem a autorização prévia dos peritos. Logo no começo do questionário, você terá a oportunidade de definir o grau de sigilo em que você gostaria de manter a informação. Em caso de qualquer dúvida ou sugestão, não hesite em escrever para <a href="mailto:goncalo.ferraz@ufrgs.br"> goncalo.ferraz@ufrgs.br </a> ou <a href="mailto:vivizulian@unochapeco.edu.br">vivizulian@unochapeco.edu.br</a>.
         </p>
         <br />
         <p class="lead">
@@ -344,13 +344,31 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4">Nome do dormitório:</label>
                     <div class="col-sm-4">
-                        <input type="text" name="whichRoom" class="form-control" default=""/>
+                        <input type="text" name="whichRoom" class="form-control" default="" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4">Há quanto tempo monitora este dormitório:</label>
                     <div class="col-sm-4">
                         <input type="text" name="howLong" class="form-control" default="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="control-label">
+                            A qual intervalo de ano corresponde essa informação:
+                        </label>
+                        <span class="help-block" style="text-align:right"><small>(se trabalhou somente um ano, deixe o ano final igual ao inicial)</small></span>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group col-sm-6" style="padding-left:0px; float:left">
+                            <div class="input-group-addon">Início</div>
+                            <input type="number" name="anoInicio" class="form-control anoInicio" default="" />
+                        </div>
+                        <div class="input-group col-sm-6" style="padding-left:0px; float:left">
+                            <div class="input-group-addon">Fim</div>
+                            <input type="number" name="anoFim" class="form-control anoFim" default="" />
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -396,7 +414,16 @@
                         <input type="text" name="bottom-right" class="form-control bottom-right" value="70" default="70" />
                     </div>
                 </div>
-                <div id="container" class="col-md-8"></div>
+                <div id="container" class="col-md-8"><!-- Carregar o gráfico --></div>
+            </fieldset>
+            <fieldset class="row">
+                <legend>Dados Complementares</legend>
+                <div class="form-group">
+                    <label class="control-label col-sm-4">Observações gerais:</label>
+                    <div class="input-group col-sm-7">
+                        <textarea name="observacoes" class="form-control col-sm-12" default=""> </textarea>
+                    </div>
+                </div>
                 <button class="btn renew">Salvar e informar outro dormitório</button>
                 <button class="btn btn-primary finish">Salvar e enviar questionário</button>
             </fieldset>

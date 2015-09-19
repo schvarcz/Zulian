@@ -4,8 +4,8 @@ namespace Zulian.Models
 {
     public class CollectedData
     {
-        public string Researcher, Permission, ZoneName, HowLong;
+        public string Researcher, Permission, ZoneName, HowLong, Observacao;
         public Double lat, lng;
-        public int lefDown, leftTop, rightTop, rightDown;
+        public int lefDown, leftTop, rightTop, rightDown, StartYear,EndYear;
     }
 }

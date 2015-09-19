@@ -36,18 +36,21 @@ namespace Zulian.Controllers
             {
                 String line = file.ReadLine();
                 String[] fields = line.Split(';');
+                short t = 0;
                 data.Add(new CollectedData
                 {
                     Researcher = fields[0],
                     Permission = fields[1],
                     ZoneName = fields[2],
                     HowLong = fields[3],
-                    lat = Double.Parse(fields[4]),
-                    lng = Double.Parse(fields[5]),
-                    lefDown = Int16.Parse(fields[6]),
-                    leftTop = Int16.Parse(fields[7]),
-                    rightTop = Int16.Parse(fields[8]),
-                    rightDown = Int16.Parse(fields[9])
+                    StartYear = Int16.TryParse(fields[4],out t)? Int16.Parse(fields[4]):0,
+                    EndYear = Int16.TryParse(fields[5], out t) ? Int16.Parse(fields[5]) : 0,
+                    lat = Double.Parse(fields[6]),
+                    lng = Double.Parse(fields[7]),
+                    lefDown = Int16.Parse(fields[8]),
+                    leftTop = Int16.Parse(fields[9]),
+                    rightTop = Int16.Parse(fields[10]),
+                    rightDown = Int16.Parse(fields[11])
                 });
             }
             file.Close();
